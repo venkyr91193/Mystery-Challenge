@@ -10,6 +10,7 @@ def analyse(args):
   # reading the files
   filepath_1 = os.path.join(args.input_path,'gwlq.csv')
   filepath_2 = os.path.join(args.input_path,'catalog.csv')
+  filepath_3 = os.path.join(args.input_path,'tests','abcdefghijklmnopqrstuvwxyz_0.csv')
   df_1 = pd.read_csv(filepath_1)
   df_2 = pd.read_csv(filepath_2)
 

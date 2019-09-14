@@ -16,7 +16,20 @@ class Generate:
     # reading the files
     self.filepath = os.path.join(args.input_path,'gwlq.csv')
     self.df = pd.read_csv(self.filepath)
+    # catalog file
+    self.filepath_catalog = os.path.join(args.input_path,'catalog.csv')
+    self.catalog_df = pd.read_csv(self.filepath_catalog)
     self.temp_df = self.df[['x','y','z']]
+
+  def is_sub(self, list_1, list_2)->bool:
+    '''
+    To find if a list is a subset of another list
+    '''
+    ln = len(list_1)
+    for idx in range(len(list_2) - ln + 1):
+      if all(list_1[idy] == list_2[idx+idy] for idy in range(ln)):
+        return True
+    return False
 
   def generate(self):
     '''
@@ -24,6 +37,13 @@ class Generate:
     '''
     X_data = self.df.iloc[:,3:]
     Y_data = self.model.predict(X_data)
+    print()
+    array = list()
+    grouped_df = self.df.groupby(['z'])
+    for key,value in grouped_df:
+      X_data = value.iloc[:,3:]
+      Y_data = self.model.predict(X_data)
+      array.append(np.count_nonzero(Y_data))
     print()
 
 if __name__ == "__main__":
