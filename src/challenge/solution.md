@@ -25,3 +25,8 @@ So the next step was to easily classify each row of the dataset into spiral or n
 
 The model stored in the model folder is again loaded in the generate_image.py python file for classifying each row of a dataset into spiral or not spiral. 
 
+Analysing the file inside [tests\abcdefghijklmnopqrstuvwxyz_0.csv] gave me an interesting plot which is inside [images\abcd.png] which when rotated and seen from the top view gave an intresting spiral like image. The columns of 'spiral' data which is predicted by the model is inverted using logical_not and plotted to see the above result.
+
+Analysing the files this_is_a_test_0.csv to this_is_a_test_20.csv gave me similar results from the top view except the angle of view was shifed by 90 deg for each file.
+
+The results obtained from the file gwlq.csv for each separate disks, say example for z = 0 to z = 23 closely resembeled the constellations. Althought it was totally not equal since there was lot of noise to be filtered out.  
