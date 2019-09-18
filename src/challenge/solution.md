@@ -29,4 +29,4 @@ Analysing the file inside [tests\abcdefghijklmnopqrstuvwxyz_0.csv] gave me an in
 
 Analysing the files this_is_a_test_0.csv to this_is_a_test_20.csv gave me similar results from the top view except the angle of view was shifed by 90 deg for each file.
 
-The results obtained from the file gwlq.csv for each separate disks, say example for z = 0 to z = 23 closely resembeled the constellations. Althought it was totally not equal since there was lot of noise to be filtered out.  
+The results obtained from the file gwlq.csv for each separate disks, say example for z = 0 to z = 23 closely resembeled the constellations. Althought it was totally not accurate since there was lot of noise to be filtered out.  
