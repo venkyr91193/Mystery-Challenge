@@ -13,6 +13,7 @@ def analyse(args):
   filepath_3 = os.path.join(args.input_path,'tests','abcdefghijklmnopqrstuvwxyz_0.csv')
   df_1 = pd.read_csv(filepath_1)
   df_2 = pd.read_csv(filepath_2)
+  df_3 = pd.read_csv(filepath_3)
 
   # plotting the x,y,z of the data
   fig = plt.figure()
