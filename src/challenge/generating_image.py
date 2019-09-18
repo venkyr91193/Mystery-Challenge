@@ -1,11 +1,11 @@
 import argparse
 import os
 
+import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from mpl_toolkits import mplot3d
-from sklearn.externals import joblib
 
 
 class Generate:
@@ -46,7 +46,7 @@ class Generate:
     '''
     for df in [self.df,self.df_abcd,self.df_test_0,self.df_test_5,self.df_test_10,self.df_test_20]:
       temp_df = df[['x','y','z']]
-      X_data = df.iloc[:,3:]
+      X_data = temp_df.iloc[:,3:]
       Y_data = self.model.predict(X_data)
       Y_data = np.logical_not(np.asarray(Y_data))
       temp_df['spiral'] = Y_data
@@ -72,7 +72,7 @@ if __name__ == "__main__":
   parser.add_argument("--input_path",
                         type=str,
                         required=False,
-                        default=r'C:\Users\venks\Downloads\Others\datasets',
+                        default=r'C:\Users\Venkataramana R\Downloads\Others\datasets',
                         help="Data source path for the csv files")
   args = parser.parse_args()
   temp_obj = Generate(args)
