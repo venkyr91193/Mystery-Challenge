@@ -59,6 +59,8 @@ class Generate:
       ax.scatter3D(xdata, ydata, zdata)
       plt.show()
     print()
+
+    # grouping and checking the number of true spirals per disc of the file gwlq
     array = list()
     grouped_df = self.df.groupby(['z'])
     for key,value in grouped_df:
