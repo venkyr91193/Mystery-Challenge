@@ -18,8 +18,17 @@ class Generate:
     self.df = pd.read_csv(self.filepath)
     # catalog file
     self.filepath_catalog = os.path.join(args.input_path,'catalog.csv')
+    self.abcd = os.path.join(args.input_path,'tests','abcdefghijklmnopqrstuvwxyz_0.csv')
+    self.test_0 = os.path.join(args.input_path,'tests','this-is-a-test_0.csv')
+    self.test_5 = os.path.join(args.input_path,'tests','this-is-a-test_5.csv')
+    self.test_10 = os.path.join(args.input_path,'tests','this-is-a-test_10.csv')
+    self.test_20 = os.path.join(args.input_path,'tests','this-is-a-test_20.csv')
     self.catalog_df = pd.read_csv(self.filepath_catalog)
-    self.temp_df = self.df[['x','y','z']]
+    self.df_abcd = pd.read_csv(self.abcd)
+    self.df_test_0 = pd.read_csv(self.test_0)
+    self.df_test_5 = pd.read_csv(self.test_5)
+    self.df_test_10 = pd.read_csv(self.test_10)
+    self.df_test_20 = pd.read_csv(self.test_20)
 
   def is_sub(self, list_1, list_2)->bool:
     '''
@@ -35,8 +44,20 @@ class Generate:
     '''
     Generate hidden image
     '''
-    X_data = self.df.iloc[:,3:]
-    Y_data = self.model.predict(X_data)
+    for df in [self.df,self.df_abcd,self.df_test_0,self.df_test_5,self.df_test_10,self.df_test_20]:
+      temp_df = df[['x','y','z']]
+      X_data = df.iloc[:,3:]
+      Y_data = self.model.predict(X_data)
+      Y_data = np.logical_not(np.asarray(Y_data))
+      temp_df['spiral'] = Y_data
+      temp = temp_df[(temp_df['spiral'] == True)]
+      fig = plt.figure()
+      ax = plt.axes(projection='3d')
+      xdata = temp['x'].values
+      ydata = temp['y'].values
+      zdata = temp['z'].values
+      ax.scatter3D(xdata, ydata, zdata)
+      plt.show()
     print()
     array = list()
     grouped_df = self.df.groupby(['z'])
