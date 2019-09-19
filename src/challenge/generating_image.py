@@ -57,8 +57,28 @@ class Generate:
       ydata = temp['y'].values
       zdata = temp['z'].values
       ax.scatter3D(xdata, ydata, zdata)
+      # at each time for one separate dataset an image in 3D is plotted.
       plt.show()
     print()
+
+    # analyising each group of 'z' in the dataset
+    df = self.df
+    for idx in range(24):
+      temp_df = df[['x','y','z']]
+      temp_df = temp_df[temp_df['z'] == idx]
+      X_data = temp_df.iloc[:,3:]
+      Y_data = self.model.predict(X_data)
+      Y_data = np.logical_not(np.asarray(Y_data))
+      temp_df['spiral'] = Y_data
+      temp = temp_df[(temp_df['spiral'] == True)]
+      fig = plt.figure()
+      ax = plt.axes(projection='3d')
+      xdata = temp['x'].values
+      ydata = temp['y'].values
+      zdata = temp['z'].values
+      ax.scatter3D(xdata, ydata, zdata)
+      # at each time for one separate disc of the gwlq file an image in 3D is plotted.
+      plt.show()      
 
     # grouping and checking the number of true spirals per disc of the file gwlq
     array = list()
@@ -68,6 +88,7 @@ class Generate:
       Y_data = self.model.predict(X_data)
       array.append(np.count_nonzero(Y_data))
     print()
+    # analyising the array above gave me insights of how many spirals are available in a particular disc.
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()

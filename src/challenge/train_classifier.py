@@ -15,6 +15,7 @@ class Train:
     self.filepath = os.path.join(args.input_path,'catalog.csv')
     self.output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),'model')
     self.df = pd.read_csv(self.filepath)
+    # initializaing the model objects
     self.LR = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr')
     self.SVM = svm.LinearSVC()
     self.RF = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
